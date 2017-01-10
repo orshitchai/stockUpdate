@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+<title></title>
+
+<script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<script language="javascript">
+var param = {};
+//var s = window.top.location.href.substring(1).split('&');
+var s = window.location.search.substring(1).split('&');
+for (var i = 0; i < s.length; ++i) {
+    var parts = s[i].split('=');
+	console.log(parts[0]);
+	console.log(parts[1]);
+    param[parts[0]] = parts[1];
+}
+</script>
+
+</head>
+
+
+<style>
+  #imageholder div{ display:none;background-color:white;position:absolute; }
+  #imageholder{position:relative;display:inline-block;overflow:hidden; }
+  #vertical{width:1px;height:100%;}
+  #horizontal{width:100%;height:1px;}
+  
+ 
+</style>
+
+<body>
+
+	
+<div id="imageholder">
+    <div id="horizontal"></div>
+    <div id="vertical"></div>
+
+	<script>document.write('<img src="'+ decodeURIComponent(param['img']) +'" border=0>');</script>
+    
+</div>	
+
+
+<script>
+$('#imageholder img').on('mousemove', null, [$('#horizontal'), $('#vertical')],function(e){
+    e.data[1].css('left', e.offsetX==undefined?e.originalEvent.layerX:e.offsetX);
+    e.data[0].css('top', e.offsetY==undefined?e.originalEvent.layerY:e.offsetY);
+});
+$('#imageholder').on('mouseenter', null, [$('#horizontal'), $('#vertical')], function(e){
+    e.data[0].show();
+    e.data[1].show();
+}).on('mouseleave', null, [$('#horizontal'), $('#vertical')], function(e){
+        e.data[0].hide();
+        e.data[1].hide();
+});
+</script>
+
+<br>
+
+<br>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-15475900-2', 'bull3.blogspot.com');
+  ga('send', 'pageview');
+
+</script>
+</body></html>

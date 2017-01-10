@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+<title></title>
+
+<style>
+.small { 
+    font-size: small;
+}
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script language="javascript">
+
+function goCheck(x){
+	var Str=document.getElementById(x).value;	
+	window.top.location.href="stockGet2-19d.html?Indicator=9998&period=9&stockid="+Str;
+}
+
+var param = {};
+var s = window.top.location.href.substring(1).split('&');
+for (var i = 0; i < s.length; ++i) {
+    var parts = s[i].split('=');
+	console.log(parts[0]);
+	console.log(parts[1]);
+    param[parts[0]] = parts[1];
+}
+//var dailySMAChart="http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=9&ref2para3=0&subChart3=5&ref3para1=10&ref3para2=0&ref3para3=0&subChart4=7&ref4para1=18&ref4para2=9&ref4para3=0&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&type=1&logoStyle=1&";
+var dailySMAChart= [	// SMA 2/19 cap100
+						"http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=100&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=9&ref2para3=0&subChart4=5&ref4para1=10&ref4para2=0&ref4para3=0&subChart3=7&ref3para1=18&ref3para2=9&ref3para3=0&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&type=1&logoStyle=1&",
+						// SMA 10/50 cap100
+						"http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=10&indpara2=50&indpara3=100&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=9&ref2para3=0&subChart4=5&ref4para1=10&ref4para2=0&ref4para3=0&subChart3=7&ref3para1=18&ref3para2=9&ref3para3=0&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&type=1&logoStyle=1&",
+						// SMA 2/19/10/50 cap100
+						"http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=10&indpara4=100&indpara5=50&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=9&ref2para3=0&subChart4=5&ref4para1=10&ref4para2=0&ref4para3=0&subChart3=7&ref3para1=18&ref3para2=9&ref3para3=0&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&type=1&logoStyle=1&"
+					];
+					
+var weeklyBoChart="http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=9&indpara1=20&indpara2=2&indpara3=0&indpara4=0&indpara5=0&subChart1=5&ref1para1=10&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=12&ref2para2=26&ref2para3=9&subChart3=6&ref3para1=18&ref3para2=9&ref3para3=0&subChart4=7&ref4para1=18&ref4para2=9&ref4para3=0&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&type=1&logoStyle=1&";
+var STC18_9Chart="http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=9&ref2para3=0&subChart4=7&ref4para1=18&ref4para2=9&ref4para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&type=1&logoStyle=1&";
+
+if (param['stockid'].indexOf(".hk")==false) param['stockid']+=".hk";
+dailySMAChart[0]+="&stockid="+param['stockid'];
+dailySMAChart[1]+="&stockid="+param['stockid'];
+dailySMAChart[2]+="&stockid="+param['stockid'];
+weeklyBoChart+="&stockid="+param['stockid'];
+STC18_9Chart+="&stockid="+param['stockid'];
+
+
+</script></head>
+
+
+<body>
+<table style="text-align: left; " border="1" cellpadding="2" cellspacing="0">
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">
+		Code:<input type="text" id="stockid" size="10" onchange="goCheck(this.id)">		
+		<script>
+		
+			document.getElementById("stockid").value = param['stockid'];
+			document.write('<span class="small">');
+			if (param['stockid'].search(/[^0-9\s]/) != -1) 
+			{
+				document.write('<a class="small" href="http://www.aastocks.com/tc/usq/quote/chart.aspx?symbol='+ param['stockid'].replace(".US", "").replace(".us", "") +'" target="_blank">AAstock</a>');
+			}
+			else 
+			{			
+				document.write('<BR><a href="http://www.aastocks.com/tc/ltp/RTQuote.aspx?S=Y&Symbol='+ param['stockid'].replace(".HK", "").replace(".hk", "") +'" target="_blank">即時報價</a>');
+				document.write('&nbsp&nbsp&nbsp&nbsp<a href="http://www.aastocks.com/tc/stocks/quote/dynamic-chart.aspx?symbol='+ param['stockid'].replace(".HK", "").replace(".hk", "") +'" target="_blank">互動圖表</a>');	
+			}
+			document.write('</span>');			
+		</script>
+		
+      </td>	
+      <td style="vertical-align: top;">
+	  	<form id="myForm">
+		<span class="small">日線 SMA/MACD/ROC/RSI/Slow STC<br>
+	
+		<input type="radio" name="period" value="9" checked>1年		
+		<input type="radio" name="period" value="6">6個月				
+		<input type="radio" name="period" value="15">3年
+		
+		<input type="radio" name="dailySMA" value="0" checked>2/19
+		<input type="radio" name="dailySMA" value="1">10/50
+		<input type="radio" name="dailySMA" value="2">ALL
+		</form>
+		</span>		
+		
+      </td>
+      <td style="vertical-align: top;">
+		<span class="small">週線 Bollinger<br>
+		<script>
+			document.write('<a href="content.html?img='+ encodeURIComponent(weeklyBoChart+"&period=11") +'" target="content">3年</a> / ');
+			document.write('<a href="content.html?img='+ encodeURIComponent(weeklyBoChart+"&period=10") +'" target="content">1年</a> / ');
+			document.write('<a href="content.html?img='+ encodeURIComponent(weeklyBoChart+"&period=13") +'" target="content">8年</a> / ');
+			document.write('<a href="content.html?img='+ encodeURIComponent(weeklyBoChart+"&period=17") +'" target="content">10年</a>');
+		</script>
+		</span>			
+      </td>
+      <td style="vertical-align: top;">
+		<span class="small">月線 STC: 18% K低于9% D<br>
+		<script>
+			document.write('<a href="content.html?img='+ encodeURIComponent(STC18_9Chart+"&period=14") +'" target="content">8年</a> / ');
+			document.write('<a href="content.html?img='+ encodeURIComponent(STC18_9Chart+"&period=18") +'" target="content">10年 / </a>');
+			document.write('<a href="content.html?img='+ encodeURIComponent(STC18_9Chart+"&period=12") +'" target="content">3年</a>');			
+		</script>
+		</span>	
+      </td>
+
+      </td>
+	  
+	  <td>
+	  	<a href="allCharts.html?stockid=hsi&chart=2" target="_blank">恆生指數成份股</a>&nbsp&nbsp&nbsp&nbsp
+		<a href="allCharts.html?stockid=h-shares&chart=2" target="_blank">所有國企股</a>&nbsp&nbsp&nbsp&nbsp
+		<a href="allCharts.html?stockid=red-chip&chart=2" target="_blank">所有紅籌股</a>&nbsp&nbsp&nbsp&nbsp
+	  </td>
+	  
+    </tr>
+  </tbody>
+</table>
+
+	<script>
+		$('#myForm input').on('change', function() {
+		   //alert($('input[name=dailySMA]:checked', '#myForm').val()); 
+		   //alert($('input[name=period]:checked', '#myForm').val()); 
+		   parent.content.location='content.html?img='+ encodeURIComponent(dailySMAChart[  $('input[name=dailySMA]:checked', '#myForm').val() ]+"&period="+  $('input[name=period]:checked', '#myForm').val() ) ;
+
+		});			
+	</script>
+<br>
+
+<br>
+</body></html>

@@ -1,0 +1,27 @@
+<HTML><HEAD><TITLE>  </TITLE></HEAD>
+
+
+
+<script language=javascript>
+var param = {};
+var s = window.location.search.substring(1).split('&');
+for (var i = 0; i < s.length; ++i) {
+    var parts = s[i].split('=');
+	console.log(parts[0]);
+	console.log(parts[1]);
+    param[parts[0]] = parts[1];
+}
+//console.log(param);
+//console.log(param['stock']);
+//console.log(param['b']);
+//http://q9tech.com/2009/temp/stockGet2-19d.html?stockid=110000.HK
+/*
+if (param['detailchart']==1)	
+	location.replace('http://www.aastocks.com/tc/stock/FlashDetailChart.aspx?&symbol=' + param['stockid']);	
+else location.replace('http://www.aastocks.com/tc/ltp/RTQuote.aspx?S=Y&Symbol=' + param['stockid']);
+*/
+alert(http://www.aastocks.com/tc/stock/FlashDetailChart.aspx?&symbol=' + param['stockid']);
+</script>
+
+
+</HTML>
