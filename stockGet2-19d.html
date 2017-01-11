@@ -1,4 +1,6 @@
-<HTML><HEAD><TITLE>  </TITLE></HEAD>
+<HTML><HEAD>
+<link rel="icon" sizes="any" mask="" href="dollarEmoji.png">
+<TITLE>  </TITLE></HEAD>
 
 
 
@@ -24,7 +26,7 @@ var MACD_Singal = 9;
 if (param['Indicator']==9998)
 {
 	//var dailySMAChart="http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=9&ref2para3=0&subChart3=5&ref3para1=10&ref3para2=0&ref3para3=0&subChart4=7&ref4para1=18&ref4para2=9&ref4para3=0&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&period=6&type=1&logoStyle=1&";	
-	// subChart3 subChart4 ¹ï½Õ
+	// subChart3 subChart4 å°èª¿
 	var dailySMAChart="http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=100&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=9&ref2para3=0&subChart4=5&ref4para1=10&ref4para2=0&ref4para3=0&subChart3=7&ref3para1=18&ref3para2=9&ref3para3=0&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&period=6&type=1&logoStyle=1&";
 	if (param['stockid'].search(/[^0-9\s]/) != -1) param['stockid'] +=".us";	
 	dailySMAChart+="&stockid="+param['stockid'];	
@@ -35,7 +37,7 @@ if (param['Indicator']==9998)
 	document.write('</FRAMESET>');	  
 }
 else
-//SMA + «O¤O¥[³q¹D (Bollinger)
+//SMA + ä¿åŠ›åŠ é€šé“ (Bollinger)
 if (param['Indicator']==9999)
 {
 	var bo='http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&indpara1=20&indpara2=2&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=' + RSI + '&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=' + MACD_D1 + '&ref2para2=' + MACD_D2 + '&ref2para3=' + MACD_Singal + '&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&Indicator=9&period=10&type=1&stockid=' + param['stockid'];
@@ -46,7 +48,7 @@ if (param['Indicator']==9999)
 	document.write('</FRAMESET>');	  
 }
 else
-//«O¤O¥[³q¹D (Bollinger):
+//ä¿åŠ›åŠ é€šé“ (Bollinger):
 if (param['Indicator']==9)
 {
 	param['period']=10;
@@ -54,7 +56,7 @@ if (param['Indicator']==9)
 }
 else 
 {
-//²¾°Ê¥­§¡½u(SMA):
+//ç§»å‹•å¹³å‡ç·š(SMA):
 	location.replace('http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=' + RSI + '&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=' + MACD_D1 + '&ref2para2=' + MACD_D2 + '&ref2para3=' + MACD_Singal + '&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&Indicator='+param['Indicator']+'&period='+param['period']+'&type=1&stockid=' + param['stockid']);
 }
 	
