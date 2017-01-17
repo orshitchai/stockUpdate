@@ -27,7 +27,7 @@ if (param['Indicator']==9998)
 {
 	//var dailySMAChart="http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=9&ref2para3=0&subChart3=5&ref3para1=10&ref3para2=0&ref3para3=0&subChart4=7&ref4para1=18&ref4para2=9&ref4para3=0&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&period=6&type=1&logoStyle=1&";	
 	// subChart3 subChart4 對調
-	var dailySMAChart="http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=100&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=9&ref2para3=0&subChart4=5&ref4para1=10&ref4para2=0&ref4para3=0&subChart3=7&ref3para1=18&ref3para2=9&ref3para3=0&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&period=6&type=1&logoStyle=1&";
+	var dailySMAChart="http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=100&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=9&ref2para3=0&subChart4=5&ref4para1=10&ref4para2=0&ref4para3=0&subChart3=7&ref3para1=18&ref3para2=9&ref3para3=0&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&period=6&type=1&logoStyle=1&";
 	if (param['stockid'].search(/[^0-9\s]/) != -1) param['stockid'] +=".us";	
 	dailySMAChart+="&stockid="+param['stockid'];	
 	document.write('<FRAMESET rows="5.5%,*" frameborder="0">');	
@@ -40,8 +40,8 @@ else
 //SMA + 保力加通道 (Bollinger)
 if (param['Indicator']==9999)
 {
-	var bo='http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&indpara1=20&indpara2=2&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=' + RSI + '&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=' + MACD_D1 + '&ref2para2=' + MACD_D2 + '&ref2para3=' + MACD_Singal + '&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&Indicator=9&period=10&type=1&stockid=' + param['stockid'];
-	var sma='http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=' + RSI + '&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=' + MACD_D1 + '&ref2para2=' + MACD_D2 + '&ref2para3=' + MACD_Singal + '&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&Indicator=1&period='+param['period']+'&type=1&stockid=' + param['stockid'];
+	var bo='http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&indpara1=20&indpara2=2&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=' + RSI + '&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=' + MACD_D1 + '&ref2para2=' + MACD_D2 + '&ref2para3=' + MACD_Singal + '&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&Indicator=9&period=10&type=1&stockid=' + param['stockid'];
+	var sma='http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=' + RSI + '&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=' + MACD_D1 + '&ref2para2=' + MACD_D2 + '&ref2para3=' + MACD_Singal + '&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&Indicator=1&period='+param['period']+'&type=1&stockid=' + param['stockid'];
 	document.write('<FRAMESET rows="50%, 50%">');	
 	document.write('<frame src="'+sma+'"/>');
 	document.write('<frame src="'+bo+'"/>');	
@@ -52,12 +52,12 @@ else
 if (param['Indicator']==9)
 {
 	param['period']=10;
-	location.replace('http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&indpara1=20&indpara2=2&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=' + RSI + '&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=' + MACD_D1 + '&ref2para2=' + MACD_D2 + '&ref2para3=' + MACD_Singal + '&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&Indicator='+param['Indicator']+'&period='+param['period']+'&type=1&stockid=' + param['stockid']);
+	location.replace('http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&indpara1=20&indpara2=2&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=' + RSI + '&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=' + MACD_D1 + '&ref2para2=' + MACD_D2 + '&ref2para3=' + MACD_Singal + '&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&Indicator='+param['Indicator']+'&period='+param['period']+'&type=1&stockid=' + param['stockid']);
 }
 else 
 {
 //移動平均線(SMA):
-	location.replace('http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=' + RSI + '&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=' + MACD_D1 + '&ref2para2=' + MACD_D2 + '&ref2para3=' + MACD_Singal + '&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&Indicator='+param['Indicator']+'&period='+param['period']+'&type=1&stockid=' + param['stockid']);
+	location.replace('http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=' + RSI + '&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=' + MACD_D1 + '&ref2para2=' + MACD_D2 + '&ref2para3=' + MACD_Singal + '&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&Indicator='+param['Indicator']+'&period='+param['period']+'&type=1&stockid=' + param['stockid']);
 }
 	
 //alert('http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=' + RSI + '&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=' + MACD_D1  + '&ref2para2=' + MACD_D2 + '&ref2para3=' + MACD_Singal + '&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&period=9&type=1&stockid=' + param['stockid']);
