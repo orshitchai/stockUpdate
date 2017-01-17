@@ -17,7 +17,7 @@
 
 function goCheck(x){
 	var Str=document.getElementById(x).value;	
-	window.top.location.href="stockGet2-19d.html?Indicator=9998&period=9&stockid="+Str;
+	window.top.location.href="stockGet2-19d.html?t="+Date.now()+"&Indicator=9998&period=9&stockid="+Str;
 }
 
 var param = {};
