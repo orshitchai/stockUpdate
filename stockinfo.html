@@ -17,9 +17,11 @@ for (var i = 0; i < s.length; ++i) {
 //console.log(param['stock']);
 //console.log(param['b']);
 //http://q9tech.com/2009/temp/stockGet2-19d.html?stockid=110000.HK
+
 if (param['detailchart']==1)	
 	location.replace('http://www.aastocks.com/tc/stock/FlashDetailChart.aspx?&symbol=' + param['stockid']);	
-else location.replace('http://www.aastocks.com/tc/ltp/RTQuote.aspx?S=Y&Symbol=' + param['stockid']);
+else location.replace('http://www.aastocks.com/tc/ltp/rtquote.aspx?symbol=' + param['stockid']);
+
 </script>
 
 
