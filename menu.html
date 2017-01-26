@@ -68,7 +68,7 @@ STC18_9Chart+="&stockid="+param['stockid'];
 			}
 			else 
 			{			
-				document.write('<BR><a href="http://www.aastocks.com/tc/ltp/RTQuote.aspx?S=Y&Symbol='+ param['stockid'].replace(".HK", "").replace(".hk", "") +'" target="_blank">即時報價</a>');
+				document.write('<BR><a href="http://www.aastocks.com/tc/ltp/rtquote.aspx?symbol='+ param['stockid'].replace(".HK", "").replace(".hk", "") +'" target="_blank">即時報價</a>');
 				document.write('&nbsp&nbsp&nbsp&nbsp<a href="http://www.aastocks.com/tc/stocks/quote/dynamic-chart.aspx?symbol='+ param['stockid'].replace(".HK", "").replace(".hk", "") +'" target="_blank">互動圖表</a>');	
 			}
 			document.write('</span>');			
