@@ -20,6 +20,11 @@ div.outer img {  margin-left: -600px;  margin-top: -370px; }
 <script  src="hsi.js"></script>
 
 <script language="javascript">
+if (location.protocol != 'http:')
+{
+ location.href = 'http:' + window.location.href.substring(window.location.protocol.length);
+}
+
 var param = {};
 //var s = window.top.location.href.substring(1).split('&');
 var s = window.location.search.substring(1).split('&');
