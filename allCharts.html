@@ -85,7 +85,6 @@ url=chart_url[param['chartType']];
 
 	for (var i = 0; i < stockList.length;i+=chartPerRow) {			
 		document.write('<tr>');
-		/*
 		for (var j=i;j<=i+chartPerRow-1;j++)
 		{
 			if (stockList[j]!="1.SH" && stockList[j].search(/[^0-9\s]/) != -1) stockList[j] +=".us";
@@ -107,7 +106,6 @@ url=chart_url[param['chartType']];
 							+ '<a href="'+urlLink + stockList[j] + '" target="_blank"><div class="outer"><img src="'+ url + stockList[j] +'" border=1 style="width: 800px;"></div></a></td>');			
 			}
 		}
-		*/
 		document.write('</tr>');					
 	}
 
