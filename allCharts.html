@@ -19,6 +19,8 @@ div.outer img {  margin-left: -600px;  margin-top: -370px; }
 <script  src="red_chip.js"></script>
 <script  src="hsi.js"></script>
 
+<script src="common.js"></script>
+
 <script language="javascript">
 /*
 if (location.protocol != 'http:')
@@ -26,14 +28,8 @@ if (location.protocol != 'http:')
  location.href = 'http:' + window.location.href.substring(window.location.protocol.length);
 }
 */
-	
-var param = {};
-//var s = window.top.location.href.substring(1).split('&');
-var s = window.location.search.substring(1).split('&');
-for (var i = 0; i < s.length; ++i) {
-    var parts = s[i].split('=');
-    param[parts[0]] = parts[1];
-}
+
+var param =getParam();
 
 var stockList= param['stockid'].split(',');
 
@@ -89,7 +85,8 @@ url=chart_url[param['chartType']];
 		document.write('<tr>');
 		for (var j=i;j<=i+chartPerRow-1;j++)
 		{
-			if (stockList[j]!="1.SH" && stockList[j].search(/[^0-9\s]/) != -1) stockList[j] +=".us";
+			//if (stockList[j]!="1.SH" && stockList[j].search(/[^0-9\s]/) != -1) stockList[j] +=".us";
+			stockList[j]=cvtStockID(stockList[j]);
 			if (param['chartPart']==1)
 			{
 			document.write('<td><div style="float:left;">'+ stockList[j] 
