@@ -29,7 +29,7 @@ if (location.protocol != 'http:')
 }
 */
 
-var param =getParam();
+var param =getParam(0);
 
 var stockList= param['stockid'].split(',');
 
@@ -81,11 +81,10 @@ url=chart_url[param['chartType']];
 		if (param['chartPerRow']== undefined ) chartPerRow=5;
 	}
 
-	for (var i = 0; i < stockList.length;i+=chartPerRow) {			
+	for (var i = 0; i < stockList.length;i+=chartPerRow) {					
 		document.write('<tr>');
-		for (var j=i;j<=i+chartPerRow-1;j++)
+		for (var j=i;j<=i+chartPerRow-1 && j<stockList.length;j++)
 		{
-			//if (stockList[j]!="1.SH" && stockList[j].search(/[^0-9\s]/) != -1) stockList[j] +=".us";
 			stockList[j]=cvtStockID(stockList[j]);
 			if (param['chartPart']==1)
 			{
