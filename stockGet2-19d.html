@@ -1,11 +1,27 @@
-<HTML><HEAD>
-<link rel="icon" sizes="any" mask="" href="dollarEmoji.png">
-<TITLE>  </TITLE></HEAD>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <link rel="icon" sizes="any" mask="" href="dollarEmoji.png">
+  <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+<title></title>
 
+<style>
+.small { 
+    font-size: small;
+}
+
+div.outer { height: px; overflow:hidden}
+div.outer img {  margin-left: -600px;  margin-top: -370px; }
+
+</style>
+<script  src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<script  src="h-shares.js"></script>
+<script  src="red_chip.js"></script>
+<script  src="hsi.js"></script>
 
 <script src="common.js"></script>
 
-<script language=javascript>
+<script language="javascript">
 /*
 if (location.protocol != 'http:')
 {
@@ -13,69 +29,86 @@ if (location.protocol != 'http:')
 }
 */
 
-var param =getParam();
+var param =getParam(0);
 
+var stockList= param['stockid'].split(',');
 
-//console.log(param);
-//console.log(param['stock']);
-//console.log(param['b']);
+// chartType
+var chart_url= [	//MACD, 隨機快步指數(Fast STC), 隨機慢步指數(Slow STC)
+					"http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=5&ref2para3=0&subChart3=7&ref3para1=18&ref3para2=5&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&period=6&type=1&logoStyle=1&stockid=",
+					//隨機快步指數(Fast STC), 隨機慢步指數(Slow STC)
+					"http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=6&ref1para1=18&ref1para2=9&ref1para3=0&subChart2=7&ref2para1=18&ref2para2=9&ref2para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1131&period=6&type=1&logoStyle=1&stockid=",					
+				];
+var url;
+var urlLink="stockGet2-19d.html?t="+Date.now()+"&Indicator=9998&period=9&stockid=";
 
-var RSI = 9;
-var MACD_D1 = 12;
-var MACD_D2 = 26;
-var MACD_Singal = 9;
+stockList.push("110000");
+stockList.push("110010");
+stockList.push("2000001");
 
-if (!param['period']) param['period']=9;
-
-
-if (param['Indicator']==9998)
-{
-	//var dailySMAChart="http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=9&ref2para3=0&subChart3=5&ref3para1=10&ref3para2=0&ref3para3=0&subChart4=7&ref4para1=18&ref4para2=9&ref4para3=0&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&period=6&type=1&logoStyle=1&";	
-	// subChart3 subChart4 對調
-	var dailySMAChart="http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=100&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=5&ref2para3=0&subChart3=7&ref3para1=18&ref3para2=5&ref3para3=0&subChart4=5&ref4para1=10&ref4para2=0&ref4para3=0&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&period="+param['period']+"&type=1&logoStyle=1&";
-		
-	param['stockid'] = cvtStockID(param['stockid']);	
-	
-	dailySMAChart+="&stockid="+param['stockid'];	
-	document.write('<FRAMESET rows="72,*" frameborder="0">');	
-	document.write('<frame name="t_menu" src="menu.html"scrolling="no"/>');	
-	//document.write('<frame src="'+dailySMAChart+'" name="content"/>');
-	document.write('<frame src="content.html?img='+ encodeURIComponent(dailySMAChart) +'" name="content"/>');
-	document.write('</FRAMESET>');	  
-}
-else
-//SMA + 保力加通道 (Bollinger)
-if (param['Indicator']==9999)
-{
-	var bo='http://charts.aastocks.com/servlet/Charts?t='+Date.now()+'&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&indpara1=20&indpara2=2&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=' + RSI + '&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=' + MACD_D1 + '&ref2para2=' + MACD_D2 + '&ref2para3=' + MACD_Singal + '&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&Indicator=9&period='+param['period']+'&type=1&stockid=' + param['stockid'];
-	var sma='http://charts.aastocks.com/servlet/Charts?t='+Date.now()+'&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=' + RSI + '&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=' + MACD_D1 + '&ref2para2=' + MACD_D2 + '&ref2para3=' + MACD_Singal + '&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&Indicator=1&period='+param['period']+'&type=1&stockid=' + param['stockid'];
-	document.write('<FRAMESET rows="50%, 50%">');	
-	document.write('<frame src="'+sma+'"/>');
-	document.write('<frame src="'+bo+'"/>');	
-	document.write('</FRAMESET>');	  
-}
-else
-//保力加通道 (Bollinger):
-if (param['Indicator']==9)
-{
-	param['period']=10;
-	location.replace('http://charts.aastocks.com/servlet/Charts?t='+Date.now()+'&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&indpara1=20&indpara2=2&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=' + RSI + '&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=' + MACD_D1 + '&ref2para2=' + MACD_D2 + '&ref2para3=' + MACD_Singal + '&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&Indicator='+param['Indicator']+'&period='+param['period']+'&type=1&stockid=' + param['stockid']);
-}
-else 
-{
-//移動平均線(SMA):
-	location.replace('http://charts.aastocks.com/servlet/Charts?t='+Date.now()+'&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=' + RSI + '&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=' + MACD_D1 + '&ref2para2=' + MACD_D2 + '&ref2para3=' + MACD_Singal + '&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&Indicator='+param['Indicator']+'&period='+param['period']+'&type=1&stockid=' + param['stockid']);
-}
-	
-//alert('http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=' + RSI + '&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=' + MACD_D1  + '&ref2para2=' + MACD_D2 + '&ref2para3=' + MACD_Singal + '&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&period=9&type=1&stockid=' + param['stockid']);
-
-//MACD(12,26)
-//location.replace('http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=14&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=12&ref2para2=26&ref2para3=9&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&period=9&type=1&stockid=' + param['stockid']);
-
-//MACD(2,19)
-//location.replace('http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=2&ref1para1=14&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=2&ref2para2=19&ref2para3=9&subChart3=12&ref3para1=0&ref3para2=0&ref3para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&period=9&type=1&&stockid=' + param['stockid']);
-
+var chartPerRow=3;
+if (param['chartPerRow']!= undefined ) chartPerRow=Number(param['chartPerRow']);
+if (param['chartPart']== undefined ) param['chartPart']=1;
+if (param['chartType']== undefined ) param['chartType']=0;
+url=chart_url[param['chartType']];
 </script>
 
 
-</HTML>
+</head>
+
+<body>
+	<a href="allCharts.html?stockid=hsi&chartPart=2" target="_blank">恆生指數成份股</a>&nbsp&nbsp&nbsp&nbsp
+	<a href="allCharts.html?stockid=h-shares&chartPart=2" target="_blank">所有國企股</a>&nbsp&nbsp&nbsp&nbsp
+	<a href="allCharts.html?stockid=red-chip&chartPart=2" target="_blank">所有紅籌股</a>&nbsp&nbsp&nbsp&nbsp
+	Parameters: chartPerRow=[1-10], chartPart=[1-2],chartType[0-1]<BR>
+	<table>
+	<script>
+	if (stockList[0]=='h-shares')
+	{
+		stockList = h_shares;
+		if (param['chartPerRow']== undefined ) chartPerRow=5;
+	}
+	else
+	if (stockList[0]=='red-chip')
+	{
+		stockList = red_chip;
+		if (param['chartPerRow']== undefined ) chartPerRow=5;
+	}
+	else
+	if (stockList[0]=='hsi')
+	{	
+		stockList = hsi;
+		if (param['chartPerRow']== undefined ) chartPerRow=5;
+	}
+
+	for (var i = 0; i < stockList.length;i+=chartPerRow) {					
+		document.write('<tr>');
+		for (var j=i;j<=i+chartPerRow-1 && j<stockList.length;j++)
+		{
+			stockList[j]=cvtStockID(stockList[j]);
+			if (param['chartPart']==1)
+			{
+			document.write('<td><div style="float:left;">'+ stockList[j] 
+							+ '&nbsp&nbsp<a class="small" href="http://www.aastocks.com/tc/ltp/rtquote.aspx?symbol='+ stockList[j] 
+							+ '" target="_blank">即時報價</a>' 
+							+ '&nbsp&nbsp&nbsp&nbsp<a  class="small" href="http://www.aastocks.com/tc/stocks/quote/dynamic-chart.aspx?symbol='+ stockList[j] 
+							+ '" target="_blank">互動圖表</a>' 
+							+ '&nbsp&nbsp</div><div style="max-height: 15px;max-width: 160px;overflow: hidden;style="float:right;"><img src="'+ url + stockList[j] +'" border=1 ></div>' 
+							+ '<a href="'+urlLink + stockList[j] + '" target="_blank"><img src="'+ url + stockList[j] +'" border=1 style="width: 400px;"></a></td>');
+			}
+			else if (param['chartPart']==2)
+			{
+			document.write('<td><div style="float:left;">'+ stockList[j] 
+							+ '&nbsp&nbsp<a class="small" href="http://www.aastocks.com/tc/ltp/rtquote.aspx?symbol='+ stockList[j] 
+							+ '" target="_blank">即時報價</a>'
+							+ '<a href="'+urlLink + stockList[j] + '" target="_blank"><div class="outer"><img src="'+ url + stockList[j] +'" border=1 style="width: 800px;"></div></a></td>');			
+			}
+		}
+		document.write('</tr>');					
+	}
+
+	</script>
+    </table>
+<br>
+
+</body></html>
