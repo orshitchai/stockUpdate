@@ -14,6 +14,9 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <script src="common.js"></script>
+
+
+
 <script language="javascript">
 
 function goCheck(x){
@@ -24,26 +27,19 @@ function goCheck(x){
 var param =getParam(1);
 
 //var dailySMAChart="http://charts.aastocks.com/servlet/Charts?fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=9&ref2para3=0&subChart3=5&ref3para1=10&ref3para2=0&ref3para3=0&subChart4=7&ref4para1=18&ref4para2=9&ref4para3=0&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&type=1&logoStyle=1&";
-var dailySMAChart= [	// SMA 2/19 cap100
-						"http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=100&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&type=1&logoStyle=1&",
+var dailySMAChart= [	
+						
+						// SMA 2/19 cap100
+						"http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=100&indpara4=0&indpara5=0&"+ subCharts +"&scheme=3&com=100&chartwidth=1230&chartheight=1521&type=1&logoStyle=1&",
 						// SMA 10/50 cap100
-						"http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=10&indpara2=50&indpara3=100&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&type=1&logoStyle=1&",
+						"http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=10&indpara2=50&indpara3=100&indpara4=0&indpara5=0&&"+ subCharts +"&scheme=3&com=100&chartwidth=1230&chartheight=1521&type=1&logoStyle=1&",
 						// SMA 2/19/10/50 cap100
-						"http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=10&indpara4=100&indpara5=50&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&type=1&logoStyle=1&"
+						"http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=10&indpara4=100&indpara5=50&"+ subCharts +"&scheme=3&com=100&chartwidth=1230&chartheight=1521&type=1&logoStyle=1&"						
+						
 					];
 
-var dailySTCChart=	[
-						// STC(18,5)
-						"&subChart2=6&ref2para1=18&ref2para2=5&ref2para3=0&subChart4=5&ref4para1=10&ref4para2=0&ref4para3=0&subChart3=7&ref3para1=18&ref3para2=5&ref3para3=0",
-						// STC(18,9)
-						"&subChart2=6&ref2para1=18&ref2para2=9&ref2para3=0&subChart4=5&ref4para1=10&ref4para2=0&ref4para3=0&subChart3=7&ref3para1=18&ref3para2=9&ref3para3=0",
-						// STC(20,5)
-						"&subChart2=6&ref2para1=20&ref2para2=5&ref2para3=0&subChart4=5&ref4para1=10&ref4para2=0&ref4para3=0&subChart3=7&ref3para1=20&ref3para2=5&ref3para3=0",						
-					];				
 
-					
-var weeklyBoChart="http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=9&indpara1=20&indpara2=2&indpara3=0&indpara4=0&indpara5=0&subChart1=5&ref1para1=10&ref1para2=0&ref1para3=0&subChart2=3&ref2para1=12&ref2para2=26&ref2para3=9&subChart3=6&ref3para1=18&ref3para2=9&ref3para3=0&subChart4=7&ref4para1=18&ref4para2=9&ref4para3=0&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&type=1&logoStyle=1&";
-var STC18_9Chart="http://charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=0&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=9&ref2para3=0&subChart4=7&ref4para1=18&ref4para2=9&ref4para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1261&type=1&logoStyle=1&";
+
 
 
 console.log("menu: stockid: "+param['stockid']);
@@ -143,7 +139,12 @@ STC18_9Chart+="&stockid="+param['stockid'];
 		$('#myForm input').on('change', function() {
 		   //alert($('input[name=dailySMA]:checked', '#myForm').val()); 
 		   //alert($('input[name=period]:checked', '#myForm').val()); 
-		   parent.content.location='content.html?img='+ encodeURIComponent(dailySMAChart[  $('input[name=dailySMA]:checked', '#myForm').val() ]+dailySTCChart[  $('input[name=STC]:checked', '#myForm').val() ]+"&period="+  $('input[name=period]:checked', '#myForm').val() ) ;
+		   
+			var url=dailySMAChart[$('input[name=dailySMA]:checked', '#myForm').val() ];
+			//prompt("1", url);
+			url=url.replace(dailySTCChart[0], dailySTCChart[$('input[name=STC]:checked', '#myForm').val() ]).replace("&period=6", "");
+
+		   parent.content.location='content.html?img='+ encodeURIComponent(url+"&period="+  $('input[name=period]:checked', '#myForm').val() ) ;
 
 		});			
 	</script>
