@@ -34,7 +34,7 @@ if (param['Indicator']==9998)
 	// subChart3 subChart4 對調
 	//var dailySMAChart="//charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=100&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=5&ref2para3=0&subChart3=7&ref3para1=18&ref3para2=5&ref3para3=0&subChart4=5&ref4para1=10&ref4para2=0&ref4para3=0&subChart5=2&ref5para1=9&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&period="+param['period']+"&type=1&logoStyle=1&";
 	// add KDJ, remove RSI 
-	var dailySMAChart="//charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=100&indpara4=0&indpara5=0&subChart1=3&ref1para1=12&ref1para2=26&ref1para3=9&subChart2=6&ref2para1=18&ref2para2=5&ref2para3=0&subChart3=7&ref3para1=18&ref3para2=5&ref3para3=0&subChart4=16&ref4para1=9&ref4para2=3&ref4para3=3&subChart5=5&ref5para1=10&ref5para2=0&ref5para3=0&scheme=3&com=100&chartwidth=1230&chartheight=1521&period="+param['period']+"&type=1&logoStyle=1&";
+	var dailySMAChart="//charts.aastocks.com/servlet/Charts?t="+Date.now()+"&fontsize=12&15MinDelay=T&lang=1&titlestyle=1&vol=1&Indicator=1&indpara1=2&indpara2=19&indpara3=100&indpara4=0&indpara5=0&"+ subCharts +"&scheme=3&com=100&chartwidth=1230&chartheight=1521&period="+param['period']+"&type=1&logoStyle=1&";
 	
 	param['stockid'] = cvtStockID(param['stockid']);	
 	
